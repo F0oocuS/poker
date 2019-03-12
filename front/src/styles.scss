@@ -13,3 +13,11 @@ a {
 	color: #fff;
 	text-decoration: none;
 }
+
+.form {
+	margin: 0 auto;
+	max-width: 500px;
+	&__field {
+		width: 100%;
+	}
+}

@@ -6,7 +6,7 @@ const isValid = require('../middleware/isValid');
 
 const router = express.Router();
 
-router.post('/signup', userController.validator('signUp'), isValid, userController.signUp);
+router.post('/signup', userController.validator('signUp'), /*isValid, */userController.signUp);
 
 router.post('/signin', userController.validator('signIn'), isValid, userController.signIn);
 

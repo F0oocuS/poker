@@ -1,3 +1,18 @@
-<p>
-  signup works!
-</p>
+<form class="form" [formGroup]="signUpForm" (submit)="onSubmit()">
+	<mat-card>
+		<mat-card-title>Registration</mat-card-title>
+
+		<mat-form-field class="form__field">
+			<input matInput type="email" placeholder="email" class="form__input" formControlName="email">
+			<mat-error *ngIf="signUpForm.get('email').touched && !signUpForm.get('email').valid">{{ getEmailErrorMessage() }}</mat-error>
+		</mat-form-field>
+
+		<mat-form-field class="form__field">
+			<input matInput placeholder="Enter your password" [type]="hidePassword ? 'password' : 'text'" class="form__input" formControlName="password">
+			<mat-icon matSuffix (click)="hidePassword = !hidePassword">{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+			<mat-error *ngIf="signUpForm.get('password').touched && !signUpForm.get('password').valid">Enter valid password</mat-error>
+		</mat-form-field>
+
+		<button mat-raised-button color="primary" type="submit" [disabled]="!signUpForm.valid">Registration</button>
+	</mat-card>
+</form>
