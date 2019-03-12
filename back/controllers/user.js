@@ -89,13 +89,13 @@ exports.validator = methods => {
 		case 'signUp': {
 			return [
 				body('email', 'Invalid email address').isEmail(),
-				body('password', 'Invalid password').not().empty().isLength({ min: 4 })
+				body('password', 'Invalid password').isLength({ min: 4 })
 			]
 		}
 		case 'signIn': {
 			return [
 				body('email', 'Invalid email address').isEmail(),
-				body('password', 'Invalid password').not().empty().isLength({ min: 4 })
+				body('password', 'Invalid password').isLength({ min: 4 })
 			]
 		}
 		default:
