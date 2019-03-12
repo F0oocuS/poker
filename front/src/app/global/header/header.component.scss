@@ -1,0 +1,22 @@
+.header {
+	&__logo {
+		margin-right: auto;
+		font-size: 16px;
+		color: #fff;
+		text-transform: uppercase;
+	}
+	&__nav-list {
+		list-style: none;
+	}
+	.list {
+		display: flex;
+		&__item {
+			&:not(:first-child) {
+				margin-left: 20px;
+			}
+		}
+		&__link {
+			font-size: 14px;
+		}
+	}
+}
