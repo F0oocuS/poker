@@ -10,6 +10,8 @@ import { HeaderComponent } from './global/header/header.component';
 import { FooterComponent } from './global/footer/footer.component';
 import { PageNotFoundComponent } from './global/page-not-found/page-not-found.component';
 import { HomeComponent } from './global/home/home.component';
+import { SigninComponent } from './user/signin/signin.component';
+import { SignupComponent } from './user/signup/signup.component';
 
 @NgModule({
 	declarations: [
@@ -17,7 +19,9 @@ import { HomeComponent } from './global/home/home.component';
 		HeaderComponent,
 		FooterComponent,
 		PageNotFoundComponent,
-		HomeComponent
+		HomeComponent,
+		SigninComponent,
+		SignupComponent
 	],
 	imports: [
 		BrowserModule,
