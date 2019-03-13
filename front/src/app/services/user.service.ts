@@ -11,9 +11,17 @@ import { UserInterface } from '../interfaces/user.interface';
 
 export class UserService {
 	private domain = environment.domain;
-	public isLogIn = false;
+	public isLogin = false;
 
 	constructor(private httpClient: HttpClient) {}
+
+	static onLogOut(): void {
+		window.localStorage.removeItem('token');
+	}
+
+	static getToken(): string {
+		return window.localStorage.getItem('token');
+	}
 
 	// TODO fix Observable type
 	public onSignUp(user: UserInterface): Observable<any> {
@@ -22,5 +30,13 @@ export class UserService {
 
 	public onSignIn(user: UserInterface): Observable<any> {
 		return this.httpClient.post(this.domain + '/signin', user);
+	}
+
+	public checkIfUserAuth(): boolean {
+		if (window.localStorage.getItem('token')) {
+			this.isLogin = true;
+		}
+
+		return this.isLogin;
 	}
 }
