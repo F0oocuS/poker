@@ -4,12 +4,16 @@
 
 		<nav class="header__nav">
 			<ul class="list header__nav-list">
-				<li class="list__item">
+				<li class="list__item" *ngIf="!isLogin">
 					<a routerLink="/signin" class="list__link">Login</a>
 				</li>
 
-				<li class="list__item">
+				<li class="list__item" *ngIf="!isLogin">
 					<a routerLink="/signup" class="list__link">Registration</a>
+				</li>
+
+				<li class="list__item" *ngIf="isLogin">
+					<a routerLink="/" class="list__link" (click)="onLogout()">Logout</a>
 				</li>
 			</ul>
 		</nav>

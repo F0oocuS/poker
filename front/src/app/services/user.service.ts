@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { environment } from '../../environments/environment';
 import { UserInterface } from '../interfaces/user.interface';
@@ -11,16 +11,20 @@ import { UserInterface } from '../interfaces/user.interface';
 
 export class UserService {
 	private domain = environment.domain;
-	public isLogin = false;
+	public isLogin = new BehaviorSubject<boolean>(UserService.checkIfHasToken());
 
 	constructor(private httpClient: HttpClient) {}
 
-	static onLogOut(): void {
-		window.localStorage.removeItem('token');
+	static checkIfHasToken(): boolean {
+		return !!localStorage.getItem('token');
 	}
 
 	static getToken(): string {
-		return window.localStorage.getItem('token');
+		return localStorage.getItem('token');
+	}
+
+	static onLogOut(): void {
+		localStorage.removeItem('token');
 	}
 
 	// TODO fix Observable type
@@ -30,13 +34,5 @@ export class UserService {
 
 	public onSignIn(user: UserInterface): Observable<any> {
 		return this.httpClient.post(this.domain + '/signin', user);
-	}
-
-	public checkIfUserAuth(): boolean {
-		if (window.localStorage.getItem('token')) {
-			this.isLogin = true;
-		}
-
-		return this.isLogin;
 	}
 }

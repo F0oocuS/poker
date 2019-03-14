@@ -41,14 +41,15 @@ export class SignupComponent implements OnInit {
 				if (result.token) {
 					window.localStorage.setItem('token', result.token);
 
-					this.userService.isLogin = true;
+					this.userService.isLogin.next(true);
+
+					// TODO find what do with returned promise
+					this.router.navigateByUrl('/');
 				}
 
-				// TODO find what do with returned promise
-				this.router.navigateByUrl('/');
-				console.log(result);
-
 				this.signUpForm.reset();
+
+				console.log(result);
 			},
 			error => {
 				console.log(error);

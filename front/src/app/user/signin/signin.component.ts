@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { UserService } from '../../services/user.service';
 
@@ -11,7 +12,8 @@ import { UserService } from '../../services/user.service';
 export class SigninComponent implements OnInit {
 	private hidePassword = true;
 	private signInForm: FormGroup;
-	constructor(private userService: UserService) {}
+
+	constructor(private userService: UserService, private router: Router) {}
 
 	public ngOnInit() {
 		this.initForm();
@@ -36,8 +38,13 @@ export class SigninComponent implements OnInit {
 		this.userService.onSignIn({ email, password }).subscribe(
 			result => {
 				if (result.token) {
-					window.localStorage.setItem('token', result.token);
+					localStorage.setItem('token', result.token);
+
+					this.userService.isLogin.next(true);
+					// TODO find what do with returned promise
+					this.router.navigateByUrl('/');
 				}
+
 				console.log(result);
 			},
 			error => {
