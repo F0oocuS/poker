@@ -4,12 +4,16 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './global/home/home.component';
 import { SigninComponent } from './user/signin/signin.component';
 import { SignupComponent } from './user/signup/signup.component';
+import { AccountComponent } from './user/account/account.component';
 import { PageNotFoundComponent } from './global/page-not-found/page-not-found.component';
+
+import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
 	{ path: '', component: HomeComponent },
 	{ path: 'signin', component: SigninComponent },
-	{ path: 'signup', component: SignupComponent},
+	{ path: 'signup', component: SignupComponent },
+	{ path: 'account', component: AccountComponent, canActivate: [AuthGuardService] },
 	{ path: '404', component: PageNotFoundComponent },
 	{ path: '**', redirectTo: '404'}
 ];
