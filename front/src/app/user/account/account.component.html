@@ -1,3 +1,77 @@
-<p>
-  account works!
-</p>
+<div class="account">
+	<div class="container">
+		<div class="row">
+			<div class="account__wrapper">
+				<div class="account__aside">
+					<mat-card>
+						<img class="account__image" mat-card-image src="https://avatars0.githubusercontent.com/u/14852050?s=460&v=4" alt="">
+
+						<mat-card-title>Name</mat-card-title>
+
+						<mat-card-subtitle>User name</mat-card-subtitle>
+					</mat-card>
+				</div>
+
+				<div class="account__content">
+					<mat-tab-group>
+						<mat-tab label="Statistics">
+							<mat-table [dataSource]="data" class="mat-elevation-z8">
+								<ng-container matColumnDef="position">
+									<mat-header-cell *matHeaderCellDef>№</mat-header-cell>
+									<mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+								</ng-container>
+
+								<!-- Name Column -->
+								<ng-container matColumnDef="name">
+									<mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+									<mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+								</ng-container>
+
+								<!-- Weight Column -->
+								<ng-container matColumnDef="weight">
+									<mat-header-cell *matHeaderCellDef>Weight</mat-header-cell>
+									<mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+								</ng-container>
+
+								<!-- Symbol Column -->
+								<ng-container matColumnDef="symbol">
+									<mat-header-cell *matHeaderCellDef>Symbol</mat-header-cell>
+									<mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+								</ng-container>
+
+								<mat-header-row *matHeaderRowDef="['position', 'name', 'weight', 'symbol']"></mat-header-row>
+								<mat-row *matRowDef="let row; columns: ['position', 'name', 'weight', 'symbol'];"></mat-row>
+							</mat-table>
+						</mat-tab>
+<!--
+						<mat-tab label="Information">
+							<mat-list>
+								<mat-list-item>
+									<h3 matLine> Name</h3>
+									<p matLine>
+										<span> Subname</span>
+										<span class="demo-2"> &#45;&#45; 2 </span>
+									</p>
+								</mat-list-item>
+								<mat-list-item>
+									<h3 matLine> Name</h3>
+									<p matLine>
+										<span> Subname</span>
+										<span class="demo-2"> &#45;&#45; 2 </span>
+									</p>
+								</mat-list-item>
+								<mat-list-item>
+									<h3 matLine> Name</h3>
+									<p matLine>
+										<span> Subname</span>
+										<span class="demo-2"> &#45;&#45; 2 </span>
+									</p>
+								</mat-list-item>
+							</mat-list>
+						</mat-tab>-->
+					</mat-tab-group>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
