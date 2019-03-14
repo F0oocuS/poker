@@ -21,6 +21,8 @@ exports.signUp = (req, res, next) => {
 				throw error;
 			}
 
+			user.createAccount();
+
 			const token = jwt.sign({ id: user.id },	'secret-key', { expiresIn: '1w' });
 
 			res.status(200).json({

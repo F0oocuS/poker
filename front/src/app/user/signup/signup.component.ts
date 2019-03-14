@@ -41,7 +41,7 @@ export class SignupComponent implements OnInit {
 				if (result.token) {
 					window.localStorage.setItem('token', result.token);
 
-					this.userService.isLogIn = true;
+					this.userService.isLogin = true;
 				}
 
 				// TODO find what do with returned promise

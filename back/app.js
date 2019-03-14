@@ -3,6 +3,10 @@ const expressValidator = require('express-validator');
 const bodyParser = require('body-parser');
 const sequelize = require('./util/database');
 
+// Import all models
+const UserModel = require('./models/user');
+const AccountModel = require('./models/account');
+
 // Import all routes
 const userRouter = require('./routes/user');
 
@@ -20,6 +24,9 @@ app.use((req, res, next) => {
 });
 
 app.use('', userRouter);
+
+UserModel.hasOne(AccountModel);
+AccountModel.belongsTo(UserModel);
 
 sequelize
 	.sync()
