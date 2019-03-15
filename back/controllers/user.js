@@ -1,4 +1,6 @@
 const User = require('../models/user');
+const Account = require('../models/account');
+
 const { body } = require('express-validator/check');
 
 const jwt = require('jsonwebtoken');
@@ -84,6 +86,17 @@ exports.signIn = (req, res, next) => {
 				error
 			});
 		});
+};
+
+exports.getUser = (req, res, next) => {
+	const userId = req.userId;
+
+	Account.find({ where: { userId } })
+		.then(account => {
+			res.status(200).json({
+				account
+			})
+		})
 };
 
 exports.validator = methods => {

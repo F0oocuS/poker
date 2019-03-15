@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { UserService } from '../../services/user.service';
+
 @Component({
 	selector: 'app-account',
 	templateUrl: './account.component.html',
@@ -19,7 +21,19 @@ export class AccountComponent implements OnInit {
 		{position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
 	];
 
-	constructor() {}
+	public userInfo;
 
-	ngOnInit() {}
+	constructor(private userService: UserService) {}
+
+	public ngOnInit() {
+		console.log('send request');
+		this.userService.getUser().subscribe(
+			result => {
+				this.userInfo = result.account;
+			},
+			error => {
+				console.log(error);
+			}
+		);
+	}
 }

@@ -6,7 +6,7 @@ module.exports = (req, res, next) => {
 	let decodedToken;
 
 	try {
-		decodedToken = jwt.varify(token, 'secret-kay');
+		decodedToken = jwt.verify(token, 'secret-key');
 	} catch (error) {
 		error.statusCode = 500;
 

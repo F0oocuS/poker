@@ -35,4 +35,12 @@ export class UserService {
 	public onSignIn(user: UserInterface): Observable<any> {
 		return this.httpClient.post(this.domain + '/signin', user);
 	}
+
+	public getUser(): any {
+		return this.httpClient.get(this.domain + '/user', {
+			headers: {
+				Authorization: UserService.getToken()
+			}
+		});
+	}
 }
