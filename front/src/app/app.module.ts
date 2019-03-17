@@ -15,6 +15,7 @@ import { HomeComponent } from './global/home/home.component';
 import { SigninComponent } from './user/signin/signin.component';
 import { SignupComponent } from './user/signup/signup.component';
 import { AccountComponent } from './user/account/account.component';
+import { GameComponent } from './game/game.component';
 
 @NgModule({
 	declarations: [
@@ -25,7 +26,8 @@ import { AccountComponent } from './user/account/account.component';
 		HomeComponent,
 		SigninComponent,
 		SignupComponent,
-		AccountComponent
+		AccountComponent,
+		GameComponent
 	],
 	imports: [
 		BrowserModule,

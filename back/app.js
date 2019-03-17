@@ -6,9 +6,12 @@ const sequelize = require('./util/database');
 // Import all models
 const UserModel = require('./models/user');
 const AccountModel = require('./models/account');
+const GameModel = require('./models/game');
+const UserGameModel = require('./models/user-game');
 
 // Import all routes
 const userRouter = require('./routes/user');
+const gameRouter = require('./routes/game');
 
 const app = express();
 
@@ -24,13 +27,21 @@ app.use((req, res, next) => {
 });
 
 app.use('', userRouter);
+app.use('/game', gameRouter);
 
 UserModel.hasOne(AccountModel);
 AccountModel.belongsTo(UserModel);
+UserModel.belongsToMany(GameModel, { through: UserGameModel });
+GameModel.hasMany(UserModel);
 
 sequelize
 	.sync()
 	.then(() => {
-		app.listen(3000);
+		const server = app.listen(3000);
+		const io = require('./socket').init(server);
+
+		io.on('connection', socket => {
+			// console.log('Client connected');
+		});
 	})
 	.catch(error => console.log(error));

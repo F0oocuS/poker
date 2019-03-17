@@ -8,12 +8,14 @@ import { AccountComponent } from './user/account/account.component';
 import { PageNotFoundComponent } from './global/page-not-found/page-not-found.component';
 
 import { AuthGuardService } from './services/auth-guard.service';
+import { GameComponent } from './game/game.component';
 
 const routes: Routes = [
 	{ path: '', component: HomeComponent },
 	{ path: 'signin', component: SigninComponent },
 	{ path: 'signup', component: SignupComponent },
 	{ path: 'account', component: AccountComponent, canActivate: [AuthGuardService] },
+	{ path: 'game/:id', component: GameComponent },
 	{ path: '404', component: PageNotFoundComponent },
 	{ path: '**', redirectTo: '404'}
 ];

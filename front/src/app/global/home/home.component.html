@@ -1,1 +1,13 @@
-<button mat-raised-button color="primary">Button</button>
+<div class="home">
+	<h1 mat-card-title class="home__title">Game list</h1>
+
+	<div class="home__game-list">
+		<mat-card class="game home__game-list-item" *ngFor="let item of games;">
+			<mat-card-title class="game__wrapper">
+				{{ item?.name }} ({{ item?.currentCountPlayer + '/' + item?.maxCountPlayer }})
+
+				<a mat-raised-button [routerLink]="'game/' + item?.id" color="primary" class="game__link">Connect</a>
+			</mat-card-title>
+		</mat-card>
+	</div>
+</div>
