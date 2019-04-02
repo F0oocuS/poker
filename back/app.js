@@ -41,7 +41,12 @@ sequelize
 		const io = require('./socket').init(server);
 
 		io.on('connection', socket => {
-			// console.log('Client connected');
+			console.log('user was connect');
+			socket.on('new-message', message => {
+				console.log(message);
+
+				io.emit('new-message', message);
+			});
 		});
 	})
 	.catch(error => console.log(error));

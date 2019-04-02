@@ -8,6 +8,6 @@ const router = express.Router();
 
 router.get('', gameController.getAllGame);
 
-// router.get('', isAuth, gameController.addUserToGame);
+router.get('/:id', gameController.getSingleGame);
 
 module.exports = router;

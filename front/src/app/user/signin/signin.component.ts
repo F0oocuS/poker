@@ -10,8 +10,8 @@ import { UserService } from '../../services/user.service';
 	styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent implements OnInit {
-	private hidePassword = true;
-	private signInForm: FormGroup;
+	public hidePassword = true;
+	public signInForm: FormGroup;
 
 	constructor(private userService: UserService, private router: Router) {}
 

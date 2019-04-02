@@ -1,0 +1,21 @@
+.game {
+	padding-left: 15px;
+	padding-right: 15px;
+	&__container {
+		margin-left: -15px;
+		margin-right: -15px;
+		display: flex;
+		flex-wrap: wrap;
+	}
+	&__player {
+		padding-left: 15px;
+		padding-right: 15px;
+		width: 100%;
+		max-width: 25%;
+	}
+	.player {
+		&:not(:last-child) {
+			margin-bottom: 30px;
+		}
+	}
+}

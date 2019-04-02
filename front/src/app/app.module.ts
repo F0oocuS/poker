@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,6 +16,7 @@ import { SigninComponent } from './user/signin/signin.component';
 import { SignupComponent } from './user/signup/signup.component';
 import { AccountComponent } from './user/account/account.component';
 import { GameComponent } from './game/game.component';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
 	declarations: [
@@ -27,7 +28,8 @@ import { GameComponent } from './game/game.component';
 		SigninComponent,
 		SignupComponent,
 		AccountComponent,
-		GameComponent
+		GameComponent,
+		TestComponent
 	],
 	imports: [
 		BrowserModule,
@@ -35,7 +37,8 @@ import { GameComponent } from './game/game.component';
 		BrowserAnimationsModule,
 		MaterialModule,
 		ReactiveFormsModule,
-		HttpClientModule
+		HttpClientModule,
+		FormsModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

@@ -4,6 +4,10 @@
 
 		<nav class="header__nav">
 			<ul class="list header__nav-list">
+				<li class="list__item">
+					<a routerLink="/test" class="list__link">Test</a>
+				</li>
+
 				<li class="list__item" *ngIf="!isLogin">
 					<a routerLink="/signin" class="list__link">Login</a>
 				</li>

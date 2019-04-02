@@ -9,9 +9,11 @@ import { PageNotFoundComponent } from './global/page-not-found/page-not-found.co
 
 import { AuthGuardService } from './services/auth-guard.service';
 import { GameComponent } from './game/game.component';
+import { TestComponent } from './test/test.component';
 
 const routes: Routes = [
 	{ path: '', component: HomeComponent },
+	{ path: 'test', component: TestComponent },
 	{ path: 'signin', component: SigninComponent },
 	{ path: 'signup', component: SignupComponent },
 	{ path: 'account', component: AccountComponent, canActivate: [AuthGuardService] },

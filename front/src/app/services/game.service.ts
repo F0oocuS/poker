@@ -11,7 +11,12 @@ export class GameService {
 
 	constructor(private httpClient: HttpClient) {}
 
+	// TODO add game interface and returned type
 	public getAllGames(): any {
 		return this.httpClient.get(this.domain + '/game');
+	}
+
+	public getSingleGame(id: number): any {
+		return this.httpClient.get(this.domain + '/game/' + id);
 	}
 }

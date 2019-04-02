@@ -1,24 +1,4 @@
-const User = require('../models/user');
 const Game = require('../models/game');
-
-exports.addUserToGame = (req, res, next) => {
-	const userId = req.userId;
-
-	User
-		.findById(userId)
-		.then(user => {
-			Game.createUserGame(user.id);
-		})
-		.catch(error => {
-			if (!error.statusCode) {
-				error.statusCode = 500;
-			}
-
-			res.status(error.statusCode).json({
-				error
-			});
-		});
-};
 
 exports.getAllGame = (req, res, next) => {
 	Game
@@ -34,6 +14,32 @@ exports.getAllGame = (req, res, next) => {
 			res.status(200).json({
 				games
 			})
+		})
+		.catch(error => {
+			if (!error.statusCode) {
+				error.statusCode = 500;
+			}
+
+			res.status(error.statusCode).json({
+				error
+			});
+		});
+};
+
+exports.getSingleGame = (req, res, next) => {
+	const gameId = req.param('id');
+
+	Game
+		.findById(gameId)
+		.then(game => {
+			if (!game) {
+				const error = new Error('Game not found!');
+				error.statusCode = 404;
+
+				throw error;
+			}
+
+			res.status(200).json(game)
 		})
 		.catch(error => {
 			if (!error.statusCode) {

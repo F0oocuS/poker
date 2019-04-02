@@ -1,1 +1,23 @@
-<h1>Game id: {{ id }}</h1>
+<div class="game">
+	<h1 class="game__name">{{ game?.name }}</h1>
+
+	<div class="game__player">{{ game?.currentCountPlayer }} / {{ game?.maxCountPlayer }}</div>
+
+	<div class="game__container">
+		<div class="player game__player">
+			<mat-card>
+				<h2 class="player__name">Ihor</h2>
+
+				<p class="player__user-name">F0cuS</p>
+			</mat-card>
+		</div>
+
+		<div class="player game__player">
+			<mat-card>
+				<h2 class="player__name">Nikolai</h2>
+
+				<p class="player__user-name">NIKOLAI_R</p>
+			</mat-card>
+		</div>
+	</div>
+</div>
