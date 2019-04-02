@@ -3,7 +3,7 @@
 		<mat-card-title>Authorization</mat-card-title>
 
 		<mat-form-field class="form__field">
-			<input matInput type="email" placeholder="email" class="form__input" formControlName="email">
+			<input matInput type="email" placeholder="Email" class="form__input" formControlName="email">
 			<mat-error *ngIf="signInForm.get('email').touched && !signInForm.get('email').valid">{{ getEmailErrorMessage() }}</mat-error>
 		</mat-form-field>
 

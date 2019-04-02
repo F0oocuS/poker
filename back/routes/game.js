@@ -10,4 +10,6 @@ router.get('', gameController.getAllGame);
 
 router.get('/:id', gameController.getSingleGame);
 
+router.get('/:id/connect', isAuth, gameController.addUserToGame);
+
 module.exports = router;

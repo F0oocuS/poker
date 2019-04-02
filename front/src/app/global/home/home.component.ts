@@ -34,4 +34,13 @@ export class HomeComponent implements OnInit, OnDestroy {
 	public ngOnDestroy() {
 		this.subscription.unsubscribe();
 	}
+
+	public connectToGame(gameId: number) {
+		this.gameService.addUserToGame(gameId).subscribe(
+			res => {
+				console.log(res);
+		}, error => {
+				console.log(error);
+			});
+	}
 }

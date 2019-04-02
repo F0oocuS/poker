@@ -1,4 +1,5 @@
 const Game = require('../models/game');
+const User = require('../models/user');
 
 exports.getAllGame = (req, res, next) => {
 	Game
@@ -50,4 +51,23 @@ exports.getSingleGame = (req, res, next) => {
 				error
 			});
 		});
+};
+
+exports.addUserToGame = (req, res, next) => {
+	const gameId = req.param('id');
+	const userId = req.userId;
+
+	Game
+		.findById(gameId)
+		.then(game => {
+			User
+				.findById(userId)
+				.then(user => {
+					game.setUsers([user]).then(() => {
+						console.log('something!');
+					});
+
+				})
+		})
+		.catch(error => console.log(error));
 };

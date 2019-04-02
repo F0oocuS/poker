@@ -7,7 +7,7 @@ const sequelize = require('./util/database');
 const UserModel = require('./models/user');
 const AccountModel = require('./models/account');
 const GameModel = require('./models/game');
-const UserGameModel = require('./models/user-game');
+const GameUserModel = require('./models/game-user');
 
 // Import all routes
 const userRouter = require('./routes/user');
@@ -31,8 +31,8 @@ app.use('/game', gameRouter);
 
 UserModel.hasOne(AccountModel);
 AccountModel.belongsTo(UserModel);
-UserModel.belongsToMany(GameModel, { through: UserGameModel });
-GameModel.hasMany(UserModel);
+UserModel.belongsToMany(GameModel, { through: GameUserModel });
+GameModel.belongsToMany(UserModel, { through: GameUserModel });
 
 sequelize
 	.sync()
