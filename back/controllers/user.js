@@ -1,5 +1,4 @@
 const User = require('../models/user');
-const Account = require('../models/account');
 
 const { body } = require('express-validator/check');
 
@@ -22,8 +21,6 @@ exports.signUp = (req, res, next) => {
 				error.statusCode = 401;
 				throw error;
 			}
-
-			user.createAccount();
 
 			const token = jwt.sign({ id: user.id },	'secret-key', { expiresIn: '1w' });
 
@@ -91,12 +88,19 @@ exports.signIn = (req, res, next) => {
 exports.getUser = (req, res, next) => {
 	const userId = req.userId;
 
-	Account.find({ where: { userId } })
-		.then(account => {
+	User.findById(userId)
+		.then(user => {
+			if (!user) {
+				const error = new Error('User not found');
+				error.statusCode = 404;
+
+				throw error;
+			}
+
 			res.status(200).json({
-				account
+				user
 			})
-		})
+		});
 };
 
 exports.validator = methods => {

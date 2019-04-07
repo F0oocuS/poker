@@ -26,10 +26,9 @@ export class AccountComponent implements OnInit {
 	constructor(private userService: UserService) {}
 
 	public ngOnInit() {
-		console.log('send request');
 		this.userService.getUser().subscribe(
 			result => {
-				this.userInfo = result.account;
+				this.userInfo = result.user;
 			},
 			error => {
 				console.log(error);

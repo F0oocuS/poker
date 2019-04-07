@@ -5,7 +5,6 @@ const sequelize = require('./util/database');
 
 // Import all models
 const UserModel = require('./models/user');
-const AccountModel = require('./models/account');
 const GameModel = require('./models/game');
 const GameUserModel = require('./models/game-user');
 
@@ -29,8 +28,6 @@ app.use((req, res, next) => {
 app.use('', userRouter);
 app.use('/game', gameRouter);
 
-UserModel.hasOne(AccountModel);
-AccountModel.belongsTo(UserModel);
 UserModel.belongsToMany(GameModel, { through: GameUserModel });
 GameModel.belongsToMany(UserModel, { through: GameUserModel });
 
