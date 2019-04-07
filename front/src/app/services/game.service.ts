@@ -28,4 +28,12 @@ export class GameService {
 			}
 		});
 	}
+
+	public removeUserFromGame(gameId: number): any {
+		return this.httpClient.get(this.domain + '/game/' + gameId + '/disconnect', {
+			headers: {
+				Authorization: UserService.getToken()
+			}
+		});
+	}
 }

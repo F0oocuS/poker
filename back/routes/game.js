@@ -12,4 +12,6 @@ router.get('/:id', gameController.getSingleGame);
 
 router.get('/:id/connect', isAuth, gameController.addUserToGame);
 
+router.get('/:id/disconnect', isAuth, gameController.removeUserFromGame);
+
 module.exports = router;

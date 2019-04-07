@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { GameService } from '../services/game.service';
@@ -17,10 +17,10 @@ export class GameComponent implements OnInit, OnDestroy {
 	private subscription: Subscription;
 	private gameSubscription: Subscription;
 
-	constructor(private router: ActivatedRoute, private gameService: GameService) {}
+	constructor(private activatedRoute: ActivatedRoute, private gameService: GameService, private router: Router) {}
 
-	public ngOnInit() {
-		this.subscription = this.router.paramMap.subscribe(result => {
+	public ngOnInit(): void {
+		this.subscription = this.activatedRoute.paramMap.subscribe(result => {
 			this.gameId = +result.get('id');
 		});
 
@@ -37,8 +37,17 @@ export class GameComponent implements OnInit, OnDestroy {
 		);
 	}
 
-	public ngOnDestroy() {
+	public ngOnDestroy(): void {
 		this.subscription.unsubscribe();
 		this.gameSubscription.unsubscribe();
+
+		this.gameService.removeUserFromGame(this.gameId).subscribe(
+			() => {
+				console.log(`Ng on destroy by game with id ${this.gameId}`);
+			},
+			error => {
+				console.log(error);
+			}
+		);
 	}
 }
